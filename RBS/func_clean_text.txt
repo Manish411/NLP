@@ -1,0 +1,29 @@
+def clean_text():
+    d2 = d1[0]
+    d2 = d2.splitlines()
+    d2 = [x.strip(' ') for x in d2]
+    l1 = []
+    for char in d2:
+        lst = char[:3]
+        l1.append(lst)
+    print(l1)
+    
+    def duplicates(lst):
+    cnt= Counter(lst)
+    return [key for key in cnt.keys() if cnt[key]> 1]
+
+    def duplicates_indices(lst):
+    dup, ind= duplicates(lst), defaultdict(list)
+    for i, v in enumerate(lst):
+        if v in dup: ind[v].append(i)
+    return ind  
+    
+    print(duplicates(l1))
+    print(duplicates_indices(l1))
+    
+    exclude_index = [value[0] for key,value in k.items() if re.match('^[0-9][a-z]\.',key)]
+    d2 =[i for j,i in enumerate(d2) if j not in exclude_index]
+    d3 = [i for i in d2 if re.match('(^[0-9][a-z]\..*\?$)',i) is None]
+    d3 = [x for x in d3 if x != '']
+    d4 = '\n'.join(d3)
+return d4
